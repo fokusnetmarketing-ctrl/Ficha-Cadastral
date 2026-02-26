@@ -8,232 +8,194 @@
 </head>
 
 <body>
-  <main class="page">
-    <form class="form-card" id="formCadastro">
 
-      <div class="logo">
-        <img src="./IMAGENS/Cópia de Instagram post para provedor de internet gradiente vermelho .png" alt="Logo">
+<main class="page">
+  <form class="form-card" id="formCadastro">
+
+    <div class="logo">
+      <img src="IMAGENS/logo.png" alt="Logo">
+    </div>
+
+    <div class="data-preenchimento">
+      <label>Data do preenchimento</label>
+      <input type="date" id="data">
+    </div>
+
+    <h1>Ficha Cadastral</h1>
+
+    <!-- CLIENTE -->
+    <section class="card">
+      <h2>Dados do Cliente</h2>
+
+      <div class="grid">
+        <div>
+          <label>Nome</label>
+          <input type="text" id="nome">
+        </div>
+
+        <div>
+          <label>RG / IE</label>
+          <input type="text" id="rg">
+        </div>
+
+        <div>
+          <label>CPF / CNPJ</label>
+          <input type="text" id="cpf">
+        </div>
+
+        <div>
+          <label>Nascimento / Fundação</label>
+          <input type="date" id="nascimento">
+        </div>
       </div>
+    </section>
 
-      <div class="data-preenchimento">
-        <label>Data do preenchimento</label>
-        <input type="date" id="data">
+    <!-- ENDEREÇO -->
+    <section class="card">
+      <h2>Endereço</h2>
+
+      <div class="grid">
+        <div class="full">
+          <label>Endereço</label>
+          <input type="text" id="endereco">
+        </div>
+
+        <div>
+          <label>Número</label>
+          <input type="text" id="numero">
+        </div>
+
+        <div class="full">
+          <label>Complemento</label>
+          <input type="text" id="complemento">
+        </div>
+
+        <div>
+          <label>Cidade</label>
+          <input type="text" id="cidade">
+        </div>
+
+        <div>
+          <label>Bairro</label>
+          <input type="text" id="bairro">
+        </div>
+
+        <div>
+          <label>UF</label>
+          <input type="text" id="uf">
+        </div>
+
+        <div>
+          <label>CEP</label>
+          <input type="text" id="cep">
+        </div>
       </div>
+    </section>
 
-      <h1>Ficha Cadastral</h1>
+    <!-- CONTATO -->
+    <section class="card">
+      <h2>Contato</h2>
 
-      <!-- CLIENTE -->
-      <section class="card">
-        <h2>Dados do Cliente</h2>
+      <div class="grid">
+        <div>
+          <label>Telefone</label>
+          <input type="tel" id="telefone">
+        </div>
 
-        <div class="grid">
-          <div>
-            <label>Nome</label>
-            <input type="text" id="nome" placeholder="Digite o nome completo">
-          </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" id="email">
+        </div>
+      </div>
+    </section>
 
-          <div>
-            <label>RG / IE</label>
-            <input type="text">
-          </div>
+    <!-- PLANO -->
+    <section class="card">
+      <h2>Plano e Pagamento</h2>
 
-          <div>
-            <label>CPF / CNPJ</label>
-            <input type="text" id="cpf" placeholder="Digite o CPF/CNPJ">
-          </div>
+      <div class="grid">
+        <div>
+          <label>Plano</label>
+          <input type="text" id="plano">
+        </div>
 
-          <div>
-            <label>Nascimento / Fundação</label>
-            <input type="date">
+        <div>
+          <label>Valor</label>
+          <input type="text" id="valor">
+        </div>
+
+        <div>
+          <label>Taxa de Instalação</label>
+          <input type="text" id="taxaInstalacao">
+        </div>
+
+        <div>
+          <label>Dia do Vencimento</label>
+          <select id="vencimento">
+            <option>05</option>
+            <option>10</option>
+            <option>15</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="card destaque">
+      <h2>Informações Comerciais</h2>
+
+      <div class="grid">
+        <div>
+          <label>Cond. Pagamento</label>
+          <input type="text" id="condPagamento">
+        </div>
+
+        <div>
+          <label>Roteador em comodato</label>
+          <div class="radio-group">
+            <label><input type="radio" name="comodato" value="Sim" checked> Sim</label>
+            <label><input type="radio" name="comodato" value="Não"> Não</label>
           </div>
         </div>
-      </section>
 
-      <!-- ENDEREÇO -->
-      <section class="card">
-        <h2>Endereço</h2>
-
-        <div class="grid">
-          <div class="full">
-            <label>Endereço</label>
-            <input type="text">
-          </div>
-
-          <div>
-            <label>Número</label>
-            <input type="text">
-          </div>
-
-          <div class="full">
-            <label>Complemento / Referência</label>
-            <input type="text">
-          </div>
-
-          <div>
-            <label>Cidade</label>
-            <input type="text">
-          </div>
-
-          <div>
-            <label>Bairro</label>
-            <input type="text">
-          </div>
-
-          <div>
-            <label>UF</label>
-            <input type="text">
-          </div>
-
-          <div>
-            <label>CEP</label>
-            <input type="text">
-          </div>
+        <div>
+          <label>Cond. Roteador</label>
+          <input type="text" id="condRoteador">
         </div>
-      </section>
 
-      <!-- CONTATO -->
-      <section class="card">
-        <h2>Contato</h2>
-
-        <div class="grid">
-          <div>
-            <label>Telefone</label>
-            <input type="tel" placeholder="Digite corretamente o telefone com DDD">
-          </div>
-
-          <div>
-            <label>E-mail</label>
-            <input type="email">
-          </div>
+        <div class="full">
+          <label>Observações</label>
+          <input type="text" id="observacao">
         </div>
-      </section>
 
-      <!-- PLANO -->
-      <section class="card">
-        <h2>Plano e Pagamento</h2>
-
-        <div class="grid">
-          <div>
-            <label>Plano</label>
-            <input type="text" id="plano" placeholder="Digite corretamente o plano com MB e estilo de plano">
-          </div>
-
-          <div>
-            <label>Valor</label>
-            <input type="text" id="valor" placeholder="Digite o valor cobrado do plano">
-          </div>
-
-          <div>
-            <label>Taxa de Instalação</label>
-            <input type="text" id="taxaInstalacao" placeholder="Ex: 0,00 ou 150,00">
-          </div>
-
-          <div>
-            <label>Dia do Vencimento</label>
-            <select id="vencimento">
-              <option>05</option>
-              <option>10</option>
-              <option>15</option>
-            </select>
-          </div>
+        <div>
+          <label>Score</label>
+          <input type="text" id="score">
         </div>
-      </section>
 
-      <!-- INFORMAÇÕES -->
-      <section class="card destaque">
-        <h2>Informações Comerciais</h2>
-
-        <div class="grid">
-          <div>
-            <label>Cond. Pagamento</label>
-            <input type="text">
-          </div>
-
-          <div>
-            <label>Roteador em comodato</label>
-            <div class="radio-group">
-              <label><input type="radio" name="comodato" checked> Sim</label>
-              <label><input type="radio" name="comodato"> Não</label>
-            </div>
-          </div>
-
-          <div>
-            <label>Cond. Pagto (Roteador)</label>
-            <input type="text">
-          </div>
-
-          <div class="full">
-            <label>Observações</label>
-            <input type="text" id="observacao" placeholder="digite a observação do cadastro">
-          </div>
-
-          <div>
-            <label>Score</label>
-            <input type="text" id="score">
-          </div>
-
-          <div>
-            <label>Cor</label>
-            <input type="text" id="cor">
-          </div>
-
-          <div>
-            <label>Código</label>
-            <input type="text" id="codigo">
-          </div>
-
-          <div class="full">
-            <label>Vendedor</label>
-            <input type="text" id="vendedor">
-          </div>
+        <div>
+          <label>Cor</label>
+          <input type="text" id="cor">
         </div>
-      </section>
 
-      <button type="submit">Salvar Cadastro</button>
+        <div>
+          <label>Código</label>
+          <input type="text" id="codigo">
+        </div>
 
-    </form>
-  </main>
+        <div class="full">
+          <label>Vendedor</label>
+          <input type="text" id="vendedor">
+        </div>
+      </div>
+    </section>
 
-  <!-- JS -->
-  <script>
-  const form = document.getElementById("formCadastro");
+    <button type="submit">Salvar Cadastro</button>
 
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
+  </form>
+</main>
 
-    const data = {
-      nome: document.getElementById("nome").value,
-      cpf: document.getElementById("cpf").value,
-      plano: document.getElementById("plano").value,
-      valor: document.getElementById("valor").value,
-      vencimento: document.getElementById("vencimento").value,
-      vendedor: document.getElementById("vendedor").value,
-      observacao: document.getElementById("observacao").value,
-      score: document.getElementById("score").value,
-      codigo: document.getElementById("codigo").value,
-      cor: document.getElementById("cor").value
-    };
+<script src="index.js"></script>
 
-    try {
-      await fetch("https://script.google.com/macros/s/AKfycbwL4aTq2c6rPwIDL4bQ6zKWk0vtvgJ74omJQ5fCOR5MojsxnSO2y-B2dDDBIwFq1vG16w/exec", {
-        method: "POST",
-        mode: "no-cors", // 🔥 ESSENCIAL
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      // 👉 SEM response.json()
-
-      alert("Cadastro enviado com sucesso 🚀");
-      form.reset();
-
-    } catch (error) {
-      alert("Erro ao enviar 😢");
-      console.error(error);
-    }
-  });
-</script>
 </body>
 </html>
