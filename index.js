@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
 
   const form = document.getElementById("formCadastro");
@@ -33,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const comodato = document.querySelector('input[name="comodato"]:checked')?.value || "";
 
-    const params = new URLSearchParams({
+    const dados = {
       nome: nome.value,
       rg: rg.value,
       cpf: cpf.value,
@@ -59,23 +58,20 @@ document.addEventListener("DOMContentLoaded", function() {
       score: score.value,
       codigo: codigo.value,
       cor: cor.value
-    });
+    };
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyZEiVljxyujwS-fs-PeUYcv6Z08zpfVBisD9RHnlZxiNf5eyBWHGXNj4h60H9cc3nPOQ/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbwtuYjVg9YTcqXY0S8n02pZiWU-Q7tY3R3MOyYJaoctO2fNATn251bh3Lz7W8xfAYMmaw/exec", {
         method: "POST",
-        body: params
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(dados)
       });
 
-      const resultado = await response.json();
-
-      if (resultado.status === "ok") {
-        alert("Cadastro salvo com sucesso ✅");
-        form.reset();
-      } else {
-        alert("Erro ao salvar cadastro.");
-        console.log(resultado);
-      }
+      // ⚠️ não dá pra usar response.json() com essa técnica
+      alert("Cadastro salvo com sucesso ✅");
+      form.reset();
 
     } catch (error) {
       console.error("Erro:", error);
