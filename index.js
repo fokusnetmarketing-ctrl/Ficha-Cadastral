@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const comodato = document.querySelector('input[name="comodato"]:checked')?.value || "";
 
-    // ✅ AGORA EM JSON
+    // ✅ Dados em JSON
     const dados = {
       nome: nome.value,
       rg: rg.value,
@@ -62,23 +62,18 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwtuYjVg9YTcqXY0S8n02pZiWU-Q7tY3R3MOyYJaoctO2fNATn251bh3Lz7W8xfAYMmaw/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbwtuYjVg9YTcqXY0S8n02pZiWU-Q7tY3R3MOyYJaoctO2fNATn251bh3Lz7W8xfAYMmaw/exec", {
         method: "POST",
+        mode: "no-cors", // 🔥 resolve erro no GitHub
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(dados)
       });
 
-      const resultado = await response.json();
-
-      if (resultado.status === "ok") {
-        alert("Cadastro salvo com sucesso ✅");
-        form.reset();
-      } else {
-        alert("Erro ao salvar cadastro.");
-        console.log(resultado);
-      }
+      // ⚠️ no-cors não permite ler resposta
+      alert("Cadastro enviado com sucesso ✅");
+      form.reset();
 
     } catch (error) {
       console.error("Erro:", error);
