@@ -1,1 +1,202 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha Cadastral</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<main class="page">
+  <form class="form-card" id="formCadastro">
+
+    <div class="logo">
+      <img src="IMAGENS/logo.png" alt="Logo">
+    </div>
+
+    <div class="data-preenchimento">
+      <label>Data do preenchimento</label>
+      <input type="date" id="data">
+    </div>
+
+    <h1>Ficha Cadastral</h1>
+
+    <!-- CLIENTE -->
+    <section class="card">
+      <h2>Dados do Cliente</h2>
+
+      <div class="grid">
+        <div>
+          <label>Nome</label>
+          <input type="text" id="nome">
+        </div>
+
+        <div>
+          <label>RG / IE</label>
+          <input type="text" id="rg">
+        </div>
+
+        <div>
+          <label>CPF / CNPJ</label>
+          <input type="text" id="cpf">
+        </div>
+
+        <div>
+          <label>Nascimento / Fundação</label>
+          <input type="date" id="nascimento">
+        </div>
+      </div>
+    </section>
+
+    <!-- ENDEREÇO -->
+    <section class="card">
+      <h2>Endereço</h2>
+
+      <div class="grid">
+        <div class="full">
+          <label>Endereço</label>
+          <input type="text" id="endereco">
+        </div>
+
+        <div>
+          <label>Número</label>
+          <input type="text" id="numero">
+        </div>
+
+        <div class="full">
+          <label>Complemento</label>
+          <input type="text" id="complemento">
+        </div>
+
+        <div>
+          <label>Cidade</label>
+          <input type="text" id="cidade">
+        </div>
+
+        <div>
+          <label>Bairro</label>
+          <input type="text" id="bairro">
+        </div>
+
+        <div>
+          <label>UF</label>
+          <input type="text" id="uf">
+        </div>
+
+        <div>
+          <label>CEP</label>
+          <input type="text" id="cep">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="card">
+      <h2>Contato</h2>
+
+      <div class="grid">
+        <div>
+          <label>Telefone</label>
+          <input type="tel" id="telefone">
+        </div>
+
+        <div>
+          <label>E-mail</label>
+          <input type="email" id="email">
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANO -->
+    <section class="card">
+      <h2>Plano e Pagamento</h2>
+
+      <div class="grid">
+        <div>
+          <label>Plano</label>
+          <input type="text" id="plano">
+        </div>
+
+        <div>
+          <label>Valor</label>
+          <input type="text" id="valor">
+        </div>
+
+        <div>
+          <label>Taxa de Instalação</label>
+          <input type="text" id="taxaInstalacao">
+        </div>
+
+        <div>
+          <label>Dia do Vencimento</label>
+          <select id="vencimento">
+            <option>05</option>
+            <option>10</option>
+            <option>15</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="card destaque">
+      <h2>Informações Comerciais</h2>
+
+      <div class="grid">
+        <div>
+          <label>Cond. Pagamento</label>
+          <input type="text" id="condPagamento">
+        </div>
+
+        <div>
+          <label>Roteador em comodato</label>
+          <div class="radio-group">
+            <label><input type="radio" name="comodato" value="Sim" checked> Sim</label>
+            <label><input type="radio" name="comodato" value="Não"> Não</label>
+          </div>
+        </div>
+
+        <div>
+          <label>Cond. Roteador</label>
+          <input type="text" id="condRoteador">
+        </div>
+
+        <div class="full">
+          <label>Observações</label>
+          <input type="text" id="observacao">
+        </div>
+
+        <div>
+          <label>Score</label>
+          <input type="text" id="score">
+        </div>
+
+        <div>
+          <label>Cor</label>
+          <input type="text" id="cor">
+        </div>
+
+        <div>
+          <label>Código</label>
+          <input type="text" id="codigo">
+        </div>
+
+        <div class="full">
+          <label>Vendedor</label>
+          <input type="text" id="vendedor">
+        </div>
+      </div>
+    </section>
+
+    <button type="submit">Salvar Cadastro</button>
+
+  </form>
+</main>
+
+<script src="index.js"></script>
+
+</body>
+</html>
