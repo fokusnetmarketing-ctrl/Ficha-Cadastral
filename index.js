@@ -69,19 +69,20 @@ document.addEventListener("DOMContentLoaded", function() {
         body: params.toString()
       });
 
-      const resultado = await response.json();
+      const texto = await response.text();
+      console.log("Resposta do servidor:", texto);
 
-      if (resultado.status === "ok") {
+      if (response.ok && texto.toLowerCase().includes("ok")) {
         alert("Cadastro salvo com sucesso ✅");
         form.reset();
       } else {
-        alert("Erro ao salvar cadastro.");
-        console.log(resultado);
+        alert("Erro ao salvar cadastro ❌");
+        console.error("Resposta inesperada:", texto);
       }
 
     } catch (error) {
-      console.error("Erro:", error);
-      alert("Erro ao enviar dados.");
+      console.error("Erro ao enviar:", error);
+      alert("Erro ao enviar dados ❌");
     }
   });
 
