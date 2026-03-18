@@ -1,95 +1,54 @@
-document.addEventListener("DOMContentLoaded", function () {
+const form = document.getElementById("formCadastro");
 
-  const form = document.getElementById("formCadastro");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  const campos = [
-    "nome","rg","cpf","nascimento","endereco","numero","complemento",
-    "cidade","bairro","uf","cep","telefone","email","plano","valor",
-    "taxaInstalacao","vencimento","condRoteador","condPagamento",
-    "vendedor","observacao","score","codigo","cor"
-  ];
+  const data = {
+    data: document.getElementById("data").value,
+    nome: document.getElementById("nome").value,
+    rg: document.getElementById("rg").value,
+    cpf: document.getElementById("cpf").value,
+    nascimento: document.getElementById("nascimento").value,
+    endereco: document.getElementById("endereco").value,
+    complemento: document.getElementById("complemento").value,
+    uf: document.getElementById("uf").value,
+    bairro: document.getElementById("bairro").value,
+    cidade: document.getElementById("cidade").value,
+    numero: document.getElementById("numero").value,
+    cep: document.getElementById("cep").value,
+    telefone: document.getElementById("telefone").value,
+    email: document.getElementById("email").value,
+    plano: document.getElementById("plano").value,
+    valor: document.getElementById("valor").value,
+    taxaInstalacao: document.getElementById("taxaInstalacao").value,
+    vencimento: document.getElementById("vencimento").value,
+    comodato: document.querySelector('input[name="comodato"]:checked').value,
+    condRoteador: document.getElementById("condRoteador").value,
+    condPagamento: document.getElementById("condPagamento").value,
+    vendedor: document.getElementById("vendedor").value,
+    observacao: document.getElementById("observacao").value,
+    score: document.getElementById("score").value,
+    codigo: document.getElementById("codigo").value,
+    cor: document.getElementById("cor").value
+  };
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const comodato = document.querySelector('input[name="comodato"]:checked')?.value || "";
-
-    const params = new URLSearchParams();
-
-    campos.forEach(c => {
-      params.append(c, document.getElementById(c).value || "");
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzs5uwV0bdvDXKRREyO4L9J50h2HutsMZT4pt3An-r8MWB6jVO47rwXiHpKlhn4iS84/exec", {
+      method: "POST",
+      body: JSON.stringify(data)
     });
 
-    params.append("comodato", comodato);
+    const result = await response.json();
 
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbybZea1lHnHFsRoaPB8HZx3t2cTWXnQsTFqyPrmGkGMQHxkn7wYa9jEhfLpNykY_WNvcQ/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString()
-      });
-
-      const data = await response.json();
-
-      if (data.status === "success") {
-        alert("Cadastro salvo com sucesso ✅");
-        form.reset();
-      } else {
-        throw new Error(data.mensagem || "Erro desconhecido");
-      }
-
-    } catch (error) {
-      console.error("Erro ao enviar:", error);
-      alert("Erro ao enviar dados ❌\nVeja o console (F12)");
+    if (result.result === "success") {
+      alert("Cadastro salvo com sucesso!");
+      form.reset();
+    } else {
+      alert("Erro ao salvar.");
     }
-  });
 
-  // ===== Formatações =====
-
-  const cpf = document.getElementById("cpf");
-  const rg = document.getElementById("rg");
-  const telefone = document.getElementById("telefone");
-  const valor = document.getElementById("valor");
-  const taxaInstalacao = document.getElementById("taxaInstalacao");
-
-  // CPF
-  cpf.addEventListener("input", function (e) {
-    let v = e.target.value.replace(/\D/g, "");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-    e.target.value = v;
-  });
-
-  // RG
-  rg.addEventListener("input", function (e) {
-    let v = e.target.value.replace(/\D/g, "");
-    v = v.replace(/(\d{2})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d{1})$/, "$1-$2");
-    e.target.value = v;
-  });
-
-  // TELEFONE
-  telefone.addEventListener("input", function (e) {
-    let v = e.target.value.replace(/\D/g, "");
-    v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
-    v = v.replace(/(\d{5})(\d)/, "$1-$2");
-    e.target.value = v;
-  });
-
-  // MOEDA
-  function formatarMoeda(campo) {
-    campo.addEventListener("input", function(e) {
-      let v = e.target.value.replace(/\D/g, "");
-      v = (v / 100).toFixed(2);
-      v = v.replace(".", ",");
-      v = v.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      e.target.value = "R$ " + v;
-    });
+  } catch (error) {
+    alert("Erro de conexão.");
+    console.error(error);
   }
-
-  formatarMoeda(valor);
-  formatarMoeda(taxaInstalacao);
-
 });
