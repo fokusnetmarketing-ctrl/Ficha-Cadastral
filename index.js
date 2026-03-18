@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     params.append("comodato", comodato);
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbymlZ73YhydsdLr4ff-fb1ifHHKyR9wZMIsQDi1kKK7pD4y-IQj0GBx-Di9aXybqNkDbQ/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbybZea1lHnHFsRoaPB8HZx3t2cTWXnQsTFqyPrmGkGMQHxkn7wYa9jEhfLpNykY_WNvcQ/exec", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params.toString()
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // ===== FORMATAÇÕES =====
+  // ===== Formatações =====
 
   const cpf = document.getElementById("cpf");
   const rg = document.getElementById("rg");
