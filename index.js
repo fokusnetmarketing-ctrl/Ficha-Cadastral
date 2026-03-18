@@ -1,64 +1,49 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("formCadastro");
 
-  const nome = document.getElementById("nome");
-  const rg = document.getElementById("rg");
-  const cpf = document.getElementById("cpf");
-  const nascimento = document.getElementById("nascimento");
-  const endereco = document.getElementById("endereco");
-  const numero = document.getElementById("numero");
-  const complemento = document.getElementById("complemento");
-  const cidade = document.getElementById("cidade");
-  const bairro = document.getElementById("bairro");
-  const uf = document.getElementById("uf");
-  const cep = document.getElementById("cep");
-  const telefone = document.getElementById("telefone");
-  const email = document.getElementById("email");
-  const plano = document.getElementById("plano");
-  const valor = document.getElementById("valor");
-  const taxaInstalacao = document.getElementById("taxaInstalacao");
-  const vencimento = document.getElementById("vencimento");
-  const condRoteador = document.getElementById("condRoteador");
-  const condPagamento = document.getElementById("condPagamento");
-  const vendedor = document.getElementById("vendedor");
-  const observacao = document.getElementById("observacao");
-  const score = document.getElementById("score");
-  const codigo = document.getElementById("codigo");
-  const cor = document.getElementById("cor");
+  // ===== CAMPOS =====
+  const campos = {
+    nome: document.getElementById("nome"),
+    rg: document.getElementById("rg"),
+    cpf: document.getElementById("cpf"),
+    nascimento: document.getElementById("nascimento"),
+    endereco: document.getElementById("endereco"),
+    numero: document.getElementById("numero"),
+    complemento: document.getElementById("complemento"),
+    cidade: document.getElementById("cidade"),
+    bairro: document.getElementById("bairro"),
+    uf: document.getElementById("uf"),
+    cep: document.getElementById("cep"),
+    telefone: document.getElementById("telefone"),
+    email: document.getElementById("email"),
+    plano: document.getElementById("plano"),
+    valor: document.getElementById("valor"),
+    taxaInstalacao: document.getElementById("taxaInstalacao"),
+    vencimento: document.getElementById("vencimento"),
+    condRoteador: document.getElementById("condRoteador"),
+    condPagamento: document.getElementById("condPagamento"),
+    vendedor: document.getElementById("vendedor"),
+    observacao: document.getElementById("observacao"),
+    score: document.getElementById("score"),
+    codigo: document.getElementById("codigo"),
+    cor: document.getElementById("cor")
+  };
 
+  // ===== ENVIO DO FORM =====
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const comodato = document.querySelector('input[name="comodato"]:checked')?.value || "";
 
-    const params = new URLSearchParams({
-      nome: nome.value || "",
-      rg: rg.value || "",
-      cpf: cpf.value || "",
-      nascimento: nascimento.value || "",
-      endereco: endereco.value || "",
-      numero: numero.value || "",
-      complemento: complemento.value || "",
-      cidade: cidade.value || "",
-      bairro: bairro.value || "",
-      uf: uf.value || "",
-      cep: cep.value || "",
-      telefone: telefone.value || "",
-      email: email.value || "",
-      plano: plano.value || "",
-      valor: valor.value || "",
-      taxaInstalacao: taxaInstalacao.value || "",
-      vencimento: vencimento.value || "",
-      comodato: comodato,
-      condRoteador: condRoteador.value || "",
-      condPagamento: condPagamento.value || "",
-      vendedor: vendedor.value || "",
-      observacao: observacao.value || "",
-      score: score.value || "",
-      codigo: codigo.value || "",
-      cor: cor.value || ""
-    });
+    const params = new URLSearchParams();
+
+    // adiciona todos os campos automaticamente
+    for (let key in campos) {
+      params.append(key, campos[key].value || "");
+    }
+
+    params.append("comodato", comodato);
 
     try {
       const response = await fetch("https://script.google.com/macros/s/AKfycbyZEiVljxyujwS-fs-PeUYcv6Z08zpfVBisD9RHnlZxiNf5eyBWHGXNj4h60H9cc3nPOQ/exec", {
@@ -69,25 +54,31 @@ document.addEventListener("DOMContentLoaded", function() {
         body: params.toString()
       });
 
-      const texto = await response.text();
-      console.log("Resposta do servidor:", texto);
+      // tenta ler resposta
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error("Resposta inválida do servidor");
+      }
 
-      if (response.ok && texto.toLowerCase().includes("ok")) {
+      if (data.status === "success") {
         alert("Cadastro salvo com sucesso ✅");
         form.reset();
       } else {
-        alert("Erro ao salvar cadastro ❌");
-        console.error("Resposta inesperada:", texto);
+        throw new Error("Erro retornado pelo script");
       }
 
     } catch (error) {
-      console.error("Erro ao enviar:", error);
-      alert("Erro ao enviar dados ❌");
+      console.error("Erro detalhado:", error);
+      alert("Erro ao enviar dados ❌\nVeja o console (F12)");
     }
   });
 
-  // ===== CPF =====
-  cpf.addEventListener("input", function(e) {
+  // ===== FORMATAÇÕES =====
+
+  // CPF
+  campos.cpf.addEventListener("input", function (e) {
     let v = e.target.value.replace(/\D/g, "");
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -95,8 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
     e.target.value = v;
   });
 
-  // ===== RG =====
-  rg.addEventListener("input", function(e) {
+  // RG
+  campos.rg.addEventListener("input", function (e) {
     let v = e.target.value.replace(/\D/g, "");
     v = v.replace(/(\d{2})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -104,17 +95,17 @@ document.addEventListener("DOMContentLoaded", function() {
     e.target.value = v;
   });
 
-  // ===== TELEFONE =====
-  telefone.addEventListener("input", function(e) {
+  // TELEFONE
+  campos.telefone.addEventListener("input", function (e) {
     let v = e.target.value.replace(/\D/g, "");
     v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
     v = v.replace(/(\d{5})(\d)/, "$1-$2");
     e.target.value = v;
   });
 
-  // ===== MOEDA =====
+  // MOEDA
   function formatarMoeda(campo) {
-    campo.addEventListener("input", function(e) {
+    campo.addEventListener("input", function (e) {
       let v = e.target.value.replace(/\D/g, "");
       v = (v / 100).toFixed(2);
       v = v.replace(".", ",");
@@ -123,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  formatarMoeda(valor);
-  formatarMoeda(taxaInstalacao);
+  formatarMoeda(campos.valor);
+  formatarMoeda(campos.taxaInstalacao);
 
 });
