@@ -3,40 +3,40 @@ const form = document.getElementById("formCadastro");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const data = {
-    data: document.getElementById("data").value,
-    nome: document.getElementById("nome").value,
-    rg: document.getElementById("rg").value,
-    cpf: document.getElementById("cpf").value,
-    nascimento: document.getElementById("nascimento").value,
-    endereco: document.getElementById("endereco").value,
-    complemento: document.getElementById("complemento").value,
-    uf: document.getElementById("uf").value,
-    bairro: document.getElementById("bairro").value,
-    cidade: document.getElementById("cidade").value,
-    numero: document.getElementById("numero").value,
-    cep: document.getElementById("cep").value,
-    telefone: document.getElementById("telefone").value,
-    email: document.getElementById("email").value,
-    plano: document.getElementById("plano").value,
-    valor: document.getElementById("valor").value,
-    taxaInstalacao: document.getElementById("taxaInstalacao").value,
-    vencimento: document.getElementById("vencimento").value,
-    comodato: document.querySelector('input[name="comodato"]:checked').value,
-    condRoteador: document.getElementById("condRoteador").value,
-    condPagamento: document.getElementById("condPagamento").value,
-    vendedor: document.getElementById("vendedor").value,
-    observacao: document.getElementById("observacao").value,
-    score: document.getElementById("score").value,
-    codigo: document.getElementById("codigo").value,
-    cor: document.getElementById("cor").value
-  };
+  const formData = new FormData();
+
+  formData.append("data", document.getElementById("data").value);
+  formData.append("nome", document.getElementById("nome").value);
+  formData.append("rg", document.getElementById("rg").value);
+  formData.append("cpf", document.getElementById("cpf").value);
+  formData.append("nascimento", document.getElementById("nascimento").value);
+  formData.append("endereco", document.getElementById("endereco").value);
+  formData.append("complemento", document.getElementById("complemento").value);
+  formData.append("uf", document.getElementById("uf").value);
+  formData.append("bairro", document.getElementById("bairro").value);
+  formData.append("cidade", document.getElementById("cidade").value);
+  formData.append("numero", document.getElementById("numero").value);
+  formData.append("cep", document.getElementById("cep").value);
+  formData.append("telefone", document.getElementById("telefone").value);
+  formData.append("email", document.getElementById("email").value);
+  formData.append("plano", document.getElementById("plano").value);
+  formData.append("valor", document.getElementById("valor").value);
+  formData.append("taxaInstalacao", document.getElementById("taxaInstalacao").value);
+  formData.append("vencimento", document.getElementById("vencimento").value);
+  formData.append("comodato", document.querySelector('input[name="comodato"]:checked').value);
+  formData.append("condRoteador", document.getElementById("condRoteador").value);
+  formData.append("condPagamento", document.getElementById("condPagamento").value);
+  formData.append("vendedor", document.getElementById("vendedor").value);
+  formData.append("observacao", document.getElementById("observacao").value);
+  formData.append("score", document.getElementById("score").value);
+  formData.append("codigo", document.getElementById("codigo").value);
+  formData.append("cor", document.getElementById("cor").value);
 
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbzs5uwV0bdvDXKRREyO4L9J50h2HutsMZT4pt3An-r8MWB6jVO47rwXiHpKlhn4iS84/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbwCgXknZuJJ3y9bKZjwDQfP_pSbnvua_gGsRtvqt-xa9wzVOW18LhxC8aVSOOOE_VJJ/exec", {
       method: "POST",
       mode: "no-cors",
-      body: JSON.stringify(data)
+      body: formData
     });
 
     alert("Cadastro enviado com sucesso!");
