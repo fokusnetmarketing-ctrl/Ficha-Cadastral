@@ -33,22 +33,17 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzs5uwV0bdvDXKRREyO4L9J50h2HutsMZT4pt3An-r8MWB6jVO47rwXiHpKlhn4iS84/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbzs5uwV0bdvDXKRREyO4L9J50h2HutsMZT4pt3An-r8MWB6jVO47rwXiHpKlhn4iS84/exec", {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify(data)
     });
 
-    const result = await response.json();
-
-    if (result.result === "success") {
-      alert("Cadastro salvo com sucesso!");
-      form.reset();
-    } else {
-      alert("Erro ao salvar.");
-    }
+    alert("Cadastro enviado com sucesso!");
+    form.reset();
 
   } catch (error) {
-    alert("Erro de conexão.");
+    alert("Erro ao enviar.");
     console.error(error);
   }
 });
