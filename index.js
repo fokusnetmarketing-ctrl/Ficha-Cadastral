@@ -23,7 +23,10 @@ form.addEventListener("submit", async (e) => {
   formData.append("valor", document.getElementById("valor").value);
   formData.append("taxaInstalacao", document.getElementById("taxaInstalacao").value);
   formData.append("vencimento", document.getElementById("vencimento").value);
-  formData.append("comodato", document.querySelector('input[name="comodato"]:checked').value);
+
+  const comodatoSelecionado = document.querySelector('input[name="comodato"]:checked');
+  formData.append("comodato", comodatoSelecionado ? comodatoSelecionado.value : "");
+
   formData.append("condRoteador", document.getElementById("condRoteador").value);
   formData.append("condPagamento", document.getElementById("condPagamento").value);
   formData.append("vendedor", document.getElementById("vendedor").value);
@@ -33,7 +36,7 @@ form.addEventListener("submit", async (e) => {
   formData.append("cor", document.getElementById("cor").value);
 
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbwCgXknZuJJ3y9bKZjwDQfP_pSbnvua_gGsRtvqt-xa9wzVOW18LhxC8aVSOOOE_VJJ/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbzgcfVVtIvp3Edr8hBfVYYUuijfMce-G8oLHB-IpWtbIPdKxty4dzDaoojHwRQv8Zup/exec", {
       method: "POST",
       mode: "no-cors",
       body: formData
